@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/startPage">
+
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.example.elisapp20.framgments.Fragment2"
+        android:label="fragment_2"
+        tools:layout="@layout/fragment_2" >
+        <action
+            android:id="@+id/twotoone"
+            app:destination="@id/fragment1"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="com.example.elisapp20.framgments.Fragment1"
+        android:label="fragment_1"
+        tools:layout="@layout/fragment_1" >
+        <action
+            android:id="@+id/onetotwo"
+            app:destination="@id/fragment2"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/to_buyPage"
+            app:destination="@id/buyPage"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/buyPage"
+        android:name="com.example.elisapp20.framgments.BuyPage"
+        android:label="fragment_buy_page"
+        tools:layout="@layout/fragment_buy_page" >
+        <argument
+            android:name="ticketId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/bp_to_fr1"
+            app:destination="@id/fragment1"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/startPage"
+        android:name="com.example.elisapp20.framgments.StartPage"
+        android:label="fragment_start_page"
+        tools:layout="@layout/fragment_start_page" >
+        <action
+            android:id="@+id/start_to_fragment1"
+            app:destination="@id/fragment1" />
+    </fragment>
+</navigation>
