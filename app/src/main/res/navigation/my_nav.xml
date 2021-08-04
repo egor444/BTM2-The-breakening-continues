@@ -12,9 +12,7 @@
         tools:layout="@layout/fragment_2" >
         <action
             android:id="@+id/twotoone"
-            app:destination="@id/fragment1"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right" />
+            app:destination="@id/fragment1" />
     </fragment>
     <fragment
         android:id="@+id/fragment1"
@@ -23,14 +21,10 @@
         tools:layout="@layout/fragment_1" >
         <action
             android:id="@+id/onetotwo"
-            app:destination="@id/fragment2"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right" />
+            app:destination="@id/fragment2" />
         <action
             android:id="@+id/to_buyPage"
-            app:destination="@id/buyPage"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right" />
+            app:destination="@id/buyPage" />
     </fragment>
     <fragment
         android:id="@+id/buyPage"
@@ -43,9 +37,10 @@
             android:defaultValue="-1" />
         <action
             android:id="@+id/bp_to_fr1"
-            app:destination="@id/fragment1"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right" />
+            app:destination="@id/fragment1" />
+        <action
+            android:id="@+id/confirm_buy"
+            app:destination="@id/confirmation" />
     </fragment>
     <fragment
         android:id="@+id/startPage"
@@ -55,5 +50,22 @@
         <action
             android:id="@+id/start_to_fragment1"
             app:destination="@id/fragment1" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmation"
+        android:name="com.example.elisapp20.framgments.Confirmation"
+        android:label="fragment_confirmation"
+        tools:layout="@layout/fragment_confirmation" >
+        <action
+            android:id="@+id/confirmation_canceled"
+            app:destination="@id/buyPage" />
+        <argument
+            android:name="ticketId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="ticketCount"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

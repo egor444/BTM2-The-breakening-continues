@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.elisapp20.R;
+import com.example.elisapp20.functions.FragmentFunctions;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,32 +68,15 @@ public class Fragment1 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_1, container, false);
 
-        Button btnToFrag2 = createFrameSwitchButton(view,R.id.btnFr2,R.id.onetotwo,-1);
-        Button btnToBuyPage_Streifenkarte = createFrameSwitchButton(view,R.id.btn_streifenkarte,R.id.to_buyPage,1);
-        Button btnToBuyPage_Tageskarte = createFrameSwitchButton(view,R.id.btn_tageskarte,R.id.to_buyPage,2);
-        Button btnToBuyPage_Pepekarte = createFrameSwitchButton(view,R.id.btn_pepekarte,R.id.to_buyPage,3);
-        Button btnToBuyPage_Jahreskarte = createFrameSwitchButton(view,R.id.btn_jahreskarte,R.id.to_buyPage,4);
+        Button btnToFrag2 = FragmentFunctions.createFrameSwitchButton(view,R.id.btnFr2,R.id.onetotwo,-1,0);
+        Button btnToBuyPage_Streifenkarte = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_1,R.id.to_buyPage,0,0);
+        Button btnToBuyPage_Tageskarte = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_2,R.id.to_buyPage,1,0);
+        Button btnToBuyPage_Pepekarte = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_3,R.id.to_buyPage,2,0);
+        Button btnToBuyPage_Jahreskarte = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_4,R.id.to_buyPage,3,0);
+        Button btnToBuyPage_Monatskarte = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_5,R.id.to_buyPage,4,0);
+        Button btnToBuyPage_Kinderparadies = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_6,R.id.to_buyPage,5,0);
 
         return view;
     }
-
-    private Button createFrameSwitchButton(@NonNull View view, int btnID, int resId,int ticketId){
-        Button btn = (Button) view.findViewById(btnID);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavController navctrlr = Navigation.findNavController(view);
-                if(resId == R.id.to_buyPage) {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("ticketId", ticketId);
-                    navctrlr.navigate(resId,bundle);
-                }
-                else
-                    Navigation.findNavController(view).navigate(resId);
-            }
-        });
-        return btn;
-    }
-
 
 }

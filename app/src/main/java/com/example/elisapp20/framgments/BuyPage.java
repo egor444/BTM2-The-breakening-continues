@@ -14,7 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.elisapp20.R;
-
+import com.example.elisapp20.functions.FragmentFunctions;
+import com.example.elisapp20.functions.*;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link BuyPage#newInstance} factory method to
@@ -31,14 +32,9 @@ public class BuyPage extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    // Tickets
-    private static final Ticket[] tickets = {
-            new Ticket(1,"Streifenkarte",15),
-            new Ticket(2,"Tageskarte",10),
-            new Ticket(3,"Pepekarte",420),
-            new Ticket(4,"Jahreskarte",400),
+    // TicketCount
+    private int ticketCount;
 
-    };
 
     public BuyPage() {
         // Required empty public constructor
@@ -78,35 +74,64 @@ public class BuyPage extends Fragment {
         View view = inflater.inflate(R.layout.fragment_buy_page, container, false);
         TextView tvTicketName = view.findViewById(R.id.tvBuyPage);
         TextView tvTicketPrice = view.findViewById(R.id.tvBuyPrice);
+        Button btn_inc_ticket_count = view.findViewById(R.id.btn_incticketcount);
+        Button btn_dec_ticket_count = view.findViewById(R.id.btn_decticketcount);
         Ticket ticket = getTicketById(getArguments().getInt("ticketId"));
-        if(ticket != null){
+        Button buy_button;
+        ticketCount = 1;
+
+        if(ticket == null){
+            tvTicketName.setText("Oof ouch Fehler :(");
+            buy_button = view.findViewById(R.id.btn_buy);
+            buy_button.setActivated(false);
+        }
+        else{
             tvTicketName.setText(ticket.name);
             tvTicketPrice.setText(ticket.price + "€");
-        }
-        else
-            tvTicketName.setText("Oof ouch Fehler :(");
+            buy_button = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_buy,R.id.confirm_buy,ticket.id,ticketCount);
 
-        createFrameSwitchButton(view,R.id.btn_bp_to_fr1,R.id.bp_to_fr1,-1);
+            btn_inc_ticket_count.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ticketCount+=1;
+                    if(ticketCount > 100){
+                        ticketCount-=1;
+                        return;
+                    }
+                    if(ticketCount == 1){
+                        tvTicketName.setText(ticket.name);
+                    }
+                    if(ticketCount > 1){
+                        tvTicketName.setText(ticket.name + " x" + ticketCount);
+                    }
+                    tvTicketPrice.setText((ticketCount * ticket.price) + "€");
+                    FragmentFunctions.overrideFrameSwitchButton(view,buy_button,R.id.confirm_buy,ticket.id,ticketCount);
+                }
+            });
+
+            btn_dec_ticket_count.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ticketCount-=1;
+                    if(ticketCount <= 0){
+                        ticketCount+=1;
+                        return;
+                    }
+                    if(ticketCount == 1){
+                        tvTicketName.setText(ticket.name);
+                    }
+                    if(ticketCount > 1){
+                        tvTicketName.setText(ticket.name + " x" + ticketCount);
+                    }
+                    tvTicketPrice.setText((ticketCount * ticket.price) + "€");
+                    FragmentFunctions.overrideFrameSwitchButton(view,buy_button,R.id.confirm_buy,ticket.id,ticketCount);
+                }
+            });
+        }
+
+        FragmentFunctions.createFrameSwitchButton(view,R.id.btn_bp_to_fr1,R.id.bp_to_fr1,-1,0);
 
         return view;
-    }
-
-    private Button createFrameSwitchButton(@NonNull View view, int btnID, int resId, int ticketId){
-        Button btn = (Button) view.findViewById(btnID);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavController navctrlr = Navigation.findNavController(view);
-                if(resId == R.id.to_buyPage) {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("ticketId", ticketId);
-                    navctrlr.navigate(resId,bundle);
-                }
-                else
-                    Navigation.findNavController(view).navigate(resId);
-            }
-        });
-        return btn;
     }
 
     /**
@@ -115,21 +140,10 @@ public class BuyPage extends Fragment {
      + @param id The id of the searched ticket.
      * @return The ticket searched with the input id.
      */
-    private final Ticket getTicketById(int id){
-        for (Ticket ticket: tickets){
-            if(ticket.id == id) return ticket;
-        }
+    private Ticket getTicketById(int id){
+        if(id>=0 && id<FragmentFunctions.tickets.length) return FragmentFunctions.tickets[id];
         return null;
     }
+
 }
 
-final class Ticket{
-    public final int id;
-    public final String name;
-    public final int price;
-    public Ticket(int id, String name, int price){
-        this.id=id;
-        this.name=name;
-        this.price=price;
-    }
-}

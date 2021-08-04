@@ -4,70 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".framgments.Fragment1"
+    android:background="@color/lighter_vanilla"
     android:padding="5dp"
-    android:background="@color/raisin_black">
+    tools:context=".framgments.Fragment1">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".framgments.BuyPage"
-        android:background="@color/lighter_vanilla">
+        <Button
+            android:id="@+id/btn_fr1_1"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="1"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_fr1_2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_fr1_2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="2"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_fr1_1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_fr1_3"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="3"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_fr1_4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_fr1_1" />
+
+        <Button
+            android:id="@+id/btn_fr1_4"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="4"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_fr1_3"
+            app:layout_constraintTop_toBottomOf="@+id/btn_fr1_2" />
+
+
+        <Button
+            android:id="@+id/btn_fr1_5"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="5"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_fr1_6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_fr1_3" />
+
+        <Button
+            android:id="@+id/btn_fr1_6"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="6"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_fr1_5"
+            app:layout_constraintTop_toBottomOf="@+id/btn_fr1_4" />
 
         <Button
             android:id="@+id/btnFr2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="32dp"
             android:text="Zu anderen Karten"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/btn_streifenkarte"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Streifenkarte"
-            app:layout_constraintBottom_toTopOf="@+id/btnFr2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_tageskarte" />
-
-        <Button
-            android:id="@+id/btn_tageskarte"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tageskarte"
-            app:layout_constraintBottom_toTopOf="@+id/btn_streifenkarte"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_pepekarte" />
-
-        <Button
-            android:id="@+id/btn_pepekarte"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pepekarte"
-            app:layout_constraintBottom_toTopOf="@+id/btn_tageskarte"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_jahreskarte" />
-
-        <Button
-            android:id="@+id/btn_jahreskarte"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jahreskarte 365"
-            app:layout_constraintBottom_toTopOf="@+id/btn_pepekarte"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,30 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".framgments.BuyPage"
+    android:background="@color/lighter_vanilla"
     android:padding="5dp"
-    android:background="@color/raisin_black">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".framgments.BuyPage"
-        android:background="@color/lighter_vanilla">
+    tools:context=".framgments.BuyPage">
 
         <TextView
             android:id="@+id/tvBuyPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:text="Ticketnamenfeld"
+            android:textColor="@color/quartz"
             android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.321"
-            android:textColor="@color/quartz"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btn_bp_to_fr1"
@@ -45,11 +38,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="Preisfeld"
+            android:textColor="@color/quartz"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvBuyPage"
-            android:textColor="@color/quartz"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvBuyPage" />
 
         <Button
             android:id="@+id/btn_buy"
@@ -59,7 +52,30 @@
             android:text="Kaufen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvBuyPrice" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_decticketcount" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_incticketcount"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
+            android:text="+"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_decticketcount"
+            app:layout_constraintTop_toBottomOf="@+id/tvBuyPrice"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/btn_decticketcount"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
+            android:text="-"
+            app:layout_constraintEnd_toStartOf="@+id/btn_incticketcount"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBuyPrice"
+            android:textSize="20sp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

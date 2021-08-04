@@ -11,7 +11,7 @@ import com.example.elisapp20.R;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-
+import com.example.elisapp20.functions.FragmentFunctions;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Fragment2#newInstance} factory method to
@@ -65,7 +65,7 @@ public class Fragment2 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_2, container, false);
 
-        Button btn1 = createFrameSwitchButton(view,R.id.btnFr1,R.id.twotoone);
+        Button btn1 = FragmentFunctions.createFrameSwitchButton(view,R.id.btnFr1,R.id.twotoone,-1,0);
 
         return view;
     }
