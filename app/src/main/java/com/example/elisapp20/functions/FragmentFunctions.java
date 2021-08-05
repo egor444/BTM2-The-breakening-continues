@@ -92,7 +92,7 @@ public class FragmentFunctions {
         return btn;
     }
 
-    private static void playStartup(Context context){
+    public static void playStartup(Context context){
         try {
             MediaPlayer player = MediaPlayer.create(context, R.raw.gears);
             player.start();

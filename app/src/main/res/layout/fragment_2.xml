@@ -4,16 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".framgments.Fragment2"
-    android:background="@color/lighter_vanilla">
+    android:background="@color/lighter_vanilla"
+    tools:context=".framgments.Fragment2">
 
 
     <Button
         android:id="@+id/btnFr1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="Zum Hauptmenü"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_fr2_support"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hilfe"
+        app:layout_constraintBottom_toTopOf="@+id/btnFr1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

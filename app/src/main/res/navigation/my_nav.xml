@@ -13,6 +13,9 @@
         <action
             android:id="@+id/twotoone"
             app:destination="@id/fragment1" />
+        <action
+            android:id="@+id/fr2_to_support"
+            app:destination="@id/supportPage" />
     </fragment>
     <fragment
         android:id="@+id/fragment1"
@@ -67,5 +70,14 @@
             android:name="ticketCount"
             app:argType="integer"
             android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/supportPage"
+        android:name="com.example.elisapp20.framgments.SupportPage"
+        android:label="fragment_support_page"
+        tools:layout="@layout/fragment_support_page" >
+        <action
+            android:id="@+id/support_to_fr1"
+            app:destination="@id/fragment1" />
     </fragment>
 </navigation>
