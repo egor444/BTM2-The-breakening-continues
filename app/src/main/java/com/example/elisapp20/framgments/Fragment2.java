@@ -73,7 +73,7 @@ public class Fragment2 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_2, container, false);
 
-        Button btn1 = FragmentFunctions.createFrameSwitchButton(view,R.id.btnFr1,R.id.fr2_to_types,-1,0);
+        Button btn1 = FragmentFunctions.createFrameSwitchButton(view,R.id.btnFr1,R.id.fr2_to_types,null);
         Button btn_supp = view.findViewById(R.id.btn_fr2_support);
         t1=new TextToSpeech(view.getContext(), new TextToSpeech.OnInitListener() {
             @Override

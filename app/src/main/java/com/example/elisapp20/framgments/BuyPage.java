@@ -85,7 +85,11 @@ public class BuyPage extends Fragment {
         else{
             tvTicketName.setText(ticket.name);
             tvTicketPrice.setText(ticket.price + "€");
-            buy_button = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_buy,R.id.confirm_buy,ticket.id,ticketCount);
+            Bundle b1 = new Bundle();
+
+            b1.putInt("ticketId",ticket.id);
+            b1.putInt("ticketCount",ticketCount);
+            buy_button = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_buy,R.id.confirm_buy,b1);
 
             btn_inc_ticket_count.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -102,7 +106,10 @@ public class BuyPage extends Fragment {
                         tvTicketName.setText(ticket.name + " x" + ticketCount);
                     }
                     tvTicketPrice.setText((ticketCount * ticket.price) + "€");
-                    FragmentFunctions.overrideFrameSwitchButton(view,buy_button,R.id.confirm_buy,ticket.id,ticketCount);
+                    Bundle b1 = new Bundle();
+                    b1.putInt("ticketId",ticket.id);
+                    b1.putInt("ticketCount",ticketCount);
+                    FragmentFunctions.overrideFrameSwitchButton(view,buy_button,R.id.confirm_buy,b1);
                 }
             });
 
@@ -121,12 +128,15 @@ public class BuyPage extends Fragment {
                         tvTicketName.setText(ticket.name + " x" + ticketCount);
                     }
                     tvTicketPrice.setText((ticketCount * ticket.price) + "€");
-                    FragmentFunctions.overrideFrameSwitchButton(view,buy_button,R.id.confirm_buy,ticket.id,ticketCount);
+                    Bundle b1 = new Bundle();
+                    b1.putInt("ticketId",ticket.id);
+                    b1.putInt("ticketCount",ticketCount);
+                    FragmentFunctions.overrideFrameSwitchButton(view,buy_button,R.id.confirm_buy,b1);
                 }
             });
         }
 
-        FragmentFunctions.createFrameSwitchButton(view,R.id.btn_bp_to_fr1,R.id.bp_to_types,-1,0);
+        FragmentFunctions.createFrameSwitchButton(view,R.id.btn_bp_to_fr1,R.id.bp_to_types,null);
 
         return view;
     }

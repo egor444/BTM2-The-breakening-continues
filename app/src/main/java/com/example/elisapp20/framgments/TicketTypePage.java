@@ -73,11 +73,13 @@ public class TicketTypePage extends Fragment {
                 btns[i].setEnabled(false);
                 btns[i].setVisibility(View.INVISIBLE);
             }else{
-                btns[i] = FragmentFunctions.createTransitionButton(view,btnIds[i],R.id.types_to_fr1,FragmentFunctions.TicketTypes[i],i);
+                Bundle b1 = new Bundle();
+                b1.putInt("typeId",i);
+                btns[i] = FragmentFunctions.createTransitionButton(view,btnIds[i],R.id.types_to_fr1,FragmentFunctions.TicketTypes[i],b1);
             }
         }
 
-        Button btnToFrag2 = FragmentFunctions.createFrameSwitchButton(view,R.id.btnFr2,R.id.types_to_fr2,-1,0);
+        Button btnToFrag2 = FragmentFunctions.createFrameSwitchButton(view,R.id.btnFr2,R.id.types_to_fr2,null);
         
         return view;
     }

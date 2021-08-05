@@ -75,8 +75,9 @@ public class Confirmation extends Fragment {
             tv_name.setText(ticket.name);
         }
         tv_price.setText((ticket.price*ticketCount) + "€");
-
-        FragmentFunctions.createFrameSwitchButton(view,R.id.btn_confirmation_cancel,R.id.confirmation_canceled,ticket.id,0);
+        Bundle b1 = new Bundle();
+        b1.putInt("ticketId",ticket.id);
+        FragmentFunctions.createFrameSwitchButton(view,R.id.btn_confirmation_cancel,R.id.confirmation_canceled,b1);
 
         return view;
     }

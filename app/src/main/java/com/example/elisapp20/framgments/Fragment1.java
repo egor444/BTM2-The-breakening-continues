@@ -79,38 +79,21 @@ public class Fragment1 extends Fragment {
         };
         Button[] btns = new Button[buttonids.length];
         int typeId = getArguments().getInt("typeId");
-        int ticketIdFrom=0;
-        int ticketIdTo=0;
-        switch (typeId){
-            case 0:
-                ticketIdFrom = 0;
-                ticketIdTo = 5;
-                break;
-            case 1:
-                ticketIdFrom = 6;
-                ticketIdTo = 13;
-                break;
-            case 2:
-                ticketIdFrom = 14;
-                ticketIdTo = 16;
-                break;
-            case 3:
-                ticketIdFrom = 17;
-                ticketIdTo = 21;
-                break;
-        }
+        int[] ticketIdFromTo=FragmentFunctions.getFromToTicketIndexes(typeId);
 
         for (int i = 0; i < buttonids.length; i++) {
-            if(i >= ticketIdTo - ticketIdFrom + 1){
+            if(i >= ticketIdFromTo[1] - ticketIdFromTo[0] + 1){
                 btns[i] = view.findViewById(buttonids[i]);
                 btns[i].setEnabled(false);
                 btns[i].setVisibility(View.INVISIBLE);
             }else{
-                FragmentFunctions.createFrameSwitchButton(view,buttonids[i],R.id.to_buyPage,i+ticketIdFrom,0);
+                Bundle b1 = new Bundle();
+                b1.putInt("ticketId",i+ticketIdFromTo[0]);
+                FragmentFunctions.createFrameSwitchButton(view,buttonids[i],R.id.to_buyPage,b1);
             }
         }
 
-        FragmentFunctions.createTransitionButton(view,R.id.btn_fr1_to_types,R.id.fr1_to_types,"Zurück zum Anfang",0);
+        FragmentFunctions.createTransitionButton(view,R.id.btn_fr1_to_types,R.id.fr1_to_types,"Zurück zum Anfang",null);
 
         return view;
     }

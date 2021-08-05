@@ -14,34 +14,34 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 public class FragmentFunctions {
-    private static int tickedItIterator = 0;
+    private static int ti = 0;
     public static final Ticket[] tickets = {
             // Einzel- & Tageskarten
-            new Ticket(tickedItIterator++,"Fahrkarte Einzeln",4),
-            new Ticket(tickedItIterator++,"Kurzstrecke",2),
-            new Ticket(tickedItIterator++,"Streifenkarte",15),
-            new Ticket(tickedItIterator++,"Single Tageskarte",8),
-            new Ticket(tickedItIterator++,"Gruppen Tageskarte",15),
-            new Ticket(tickedItIterator++,"Kinder Tageskarte",3),
+            new Ticket(ti++,"Fahrkarte Einzeln",4),
+            new Ticket(ti++,"Kurzstrecke",2),
+            new Ticket(ti++,"Streifenkarte",15),
+            new Ticket(ti++,"Single Tageskarte",8),
+            new Ticket(ti++,"Gruppen Tageskarte",15),
+            new Ticket(ti++,"Kinder Tageskarte",3),
             // Vielfahrer
-            new Ticket(tickedItIterator++,"IsarCard",60),
-            new Ticket(tickedItIterator++,"IsarCard 9Uhr",50),
-            new Ticket(tickedItIterator++,"IsarCard 65",45),
-            new Ticket(tickedItIterator++,"IsarCard S",30),
-            new Ticket(tickedItIterator++,"Tarif Ausbildung I",40),
-            new Ticket(tickedItIterator++,"Tarif Ausbildung II",43),
-            new Ticket(tickedItIterator++,"Tarif Ausbildung Plus",15),
-            new Ticket(tickedItIterator++,"Ticket Semester",201),
+            new Ticket(ti++,"IsarCard",60),
+            new Ticket(ti++,"IsarCard 9Uhr",50),
+            new Ticket(ti++,"IsarCard 65",45),
+            new Ticket(ti++,"IsarCard S",30),
+            new Ticket(ti++,"Tarif Ausbildung I",40),
+            new Ticket(ti++,"Tarif Ausbildung II",43),
+            new Ticket(ti++,"Tarif Ausbildung Plus",15),
+            new Ticket(ti++,"Ticket Semester",201),
             // München Besucher
-            new Ticket(tickedItIterator++,"CityTourCard",20),
-            new Ticket(tickedItIterator++,"Airport City Day Ticket",15),
-            new Ticket(tickedItIterator++,"München Card",14),
+            new Ticket(ti++,"CityTourCard",20),
+            new Ticket(ti++,"Airport City Day Ticket",15),
+            new Ticket(ti++,"München Card",14),
             // Sonstige
-            new Ticket(tickedItIterator++,"Pepeparadies Karte",420),
-            new Ticket(tickedItIterator++,"Kintoticket",69),
-            new Ticket(tickedItIterator++,"SEA LIFE Ticket",23),
-            new Ticket(tickedItIterator++,"Oberland MVV Ticket",24),
-            new Ticket(tickedItIterator++,"Bayern Ticket",25),
+            new Ticket(ti++,"Pepeparadies Karte",420),
+            new Ticket(ti++,"Kintoticket",69),
+            new Ticket(ti++,"SEA LIFE Ticket",23),
+            new Ticket(ti++,"Oberland MVV Ticket",24),
+            new Ticket(ti++,"Bayern Ticket",25),
 
     };
 
@@ -49,44 +49,29 @@ public class FragmentFunctions {
             "Einzel & Tageskarten",
             "Vielfahrer",
             "München Besucher",
-            "Sonstige"
+            "Sonstige",
     };
 
-    public static Button createFrameSwitchButton(@NonNull View view, int btnID, int resId, int ticketId, int ticketCount){
+    public static int[] getFromToTicketIndexes(int ticketTypeId){
+        switch (ticketTypeId){
+            case 0:
+                return new int[]{0,5};
+            case 1:
+                return new int[]{6,13};
+            case 2:
+                return new int[]{14,16};
+            case 3:
+                return new int[]{17,21};
+        }
+        return new int[]{0,0};
+    }
+
+    public static Button createFrameSwitchButton(@NonNull View view, int btnID, int resId, Bundle bundle){
         Button btn = (Button) view.findViewById(btnID);
-        Context context = view.getContext();
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavController navctrlr = Navigation.findNavController(view);
-
-                NavOptions no = new NavOptions.Builder()
-                            .setEnterAnim(R.anim.from_left)
-                            .setExitAnim(R.anim.to_right)
-                            .build();
-
-                playStartup(context);
-
-                Bundle bundle = null;
-
-                if(ticketId >= 0 && ticketId < tickets.length || ticketCount > 0) {
-                    bundle = new Bundle();
-                    if (ticketId >= 0 && ticketId < tickets.length)
-                        bundle.putInt("ticketId", ticketId);
-                    if (ticketCount > 0)
-                        bundle.putInt("ticketCount", ticketCount);
-                }
-                navctrlr.navigate(resId,bundle,no);
-            }
-        });
-        if(resId == R.id.to_buyPage) {
-            btn.setText(tickets[ticketId].name);
-        }
-
-        return btn;
+        return overrideFrameSwitchButton(view, btn,resId,bundle);
     }
 
-    public static Button overrideFrameSwitchButton(@NonNull View view, Button btn, int resId, int ticketId, int ticketCount){
+    public static Button overrideFrameSwitchButton(@NonNull View view, Button btn, int resId, Bundle bundle){
         Context context = view.getContext();
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,46 +84,20 @@ public class FragmentFunctions {
                         .build();
 
                 playStartup(context);
-
-                Bundle bundle = null;
-
-                if(ticketId >= 0 && ticketId < tickets.length || ticketCount > 0) {
-                    bundle = new Bundle();
-                    if (ticketId >= 0 && ticketId < tickets.length)
-                        bundle.putInt("ticketId", ticketId);
-                    if (ticketCount > 0)
-                        bundle.putInt("ticketCount", ticketCount);
-                }
                 navctrlr.navigate(resId,bundle,no);
             }
         });
         if(resId == R.id.to_buyPage) {
-            btn.setText(tickets[ticketId].name);
+            btn.setText(tickets[bundle.getInt("ticketId")].name);
         }
 
         return btn;
     }
 
-    public static Button createTransitionButton(View view, int btnID, int resId, String buttonText, int typeId){
-        Button btn = view.findViewById(btnID);
-        Context context = view.getContext();
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                NavController navctrlr = Navigation.findNavController(view);
-                NavOptions no = new NavOptions.Builder()
-                        .setEnterAnim(R.anim.from_left)
-                        .setExitAnim(R.anim.to_right)
-                        .build();
-                bundle.putInt("typeId", typeId);
-                playStartup(context);
-
-                navctrlr.navigate(resId,bundle,no);
-            }
-        });
-        btn.setText(buttonText);
-        return btn;
+    public static Button createTransitionButton(View view, int btnID, int resId, String buttonText, Bundle bundle){
+        Button button = createFrameSwitchButton(view,btnID,resId,bundle);
+        button.setText(buttonText);
+        return button;
     }
 
     public static void playStartup(Context context){
