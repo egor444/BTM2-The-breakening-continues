@@ -14,15 +14,42 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 public class FragmentFunctions {
-
+    private static int tickedItIterator = 0;
     public static final Ticket[] tickets = {
-            new Ticket(0,"Streifenkarte",15),
-            new Ticket(1,"Tageskarte",10),
-            new Ticket(2,"Pepekarte",420),
-            new Ticket(3,"Jahreskarte",400),
-            new Ticket(4,"Monatskarte",40),
-            new Ticket(5,"Kinderparadies",666),
+            // Einzel- & Tageskarten
+            new Ticket(tickedItIterator++,"Fahrkarte Einzeln",4),
+            new Ticket(tickedItIterator++,"Kurzstrecke",2),
+            new Ticket(tickedItIterator++,"Streifenkarte",15),
+            new Ticket(tickedItIterator++,"Single Tageskarte",8),
+            new Ticket(tickedItIterator++,"Gruppen Tageskarte",15),
+            new Ticket(tickedItIterator++,"Kinder Tageskarte",3),
+            // Vielfahrer
+            new Ticket(tickedItIterator++,"IsarCard",60),
+            new Ticket(tickedItIterator++,"IsarCard 9Uhr",50),
+            new Ticket(tickedItIterator++,"IsarCard 65",45),
+            new Ticket(tickedItIterator++,"IsarCard S",30),
+            new Ticket(tickedItIterator++,"Tarif Ausbildung I",40),
+            new Ticket(tickedItIterator++,"Tarif Ausbildung II",43),
+            new Ticket(tickedItIterator++,"Tarif Ausbildung Plus",15),
+            new Ticket(tickedItIterator++,"Ticket Semester",201),
+            // München Besucher
+            new Ticket(tickedItIterator++,"CityTourCard",20),
+            new Ticket(tickedItIterator++,"Airport City Day Ticket",15),
+            new Ticket(tickedItIterator++,"München Card",14),
+            // Sonstige
+            new Ticket(tickedItIterator++,"Pepeparadies Karte",420),
+            new Ticket(tickedItIterator++,"Kintoticket",69),
+            new Ticket(tickedItIterator++,"SEA LIFE Ticket",23),
+            new Ticket(tickedItIterator++,"Oberland MVV Ticket",24),
+            new Ticket(tickedItIterator++,"Bayern Ticket",25),
 
+    };
+
+    public static final String[] TicketTypes = {
+            "Einzel & Tageskarten",
+            "Vielfahrer",
+            "München Besucher",
+            "Sonstige"
     };
 
     public static Button createFrameSwitchButton(@NonNull View view, int btnID, int resId, int ticketId, int ticketCount){
@@ -89,6 +116,28 @@ public class FragmentFunctions {
             btn.setText(tickets[ticketId].name);
         }
 
+        return btn;
+    }
+
+    public static Button createTransitionButton(View view, int btnID, int resId, String buttonText, int typeId){
+        Button btn = view.findViewById(btnID);
+        Context context = view.getContext();
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                NavController navctrlr = Navigation.findNavController(view);
+                NavOptions no = new NavOptions.Builder()
+                        .setEnterAnim(R.anim.from_left)
+                        .setExitAnim(R.anim.to_right)
+                        .build();
+                bundle.putInt("typeId", typeId);
+                playStartup(context);
+
+                navctrlr.navigate(resId,bundle,no);
+            }
+        });
+        btn.setText(buttonText);
         return btn;
     }
 

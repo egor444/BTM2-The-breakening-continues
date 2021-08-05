@@ -1,25 +1,23 @@
 package com.example.elisapp20.framgments;
 
-import android.content.Context;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.example.elisapp20.R;
+import com.example.elisapp20.functions.*;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link StartPage#newInstance} factory method to
+ * Use the {@link TicketTypePage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StartPage extends Fragment {
+public class TicketTypePage extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,7 +28,7 @@ public class StartPage extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public StartPage() {
+    public TicketTypePage() {
         // Required empty public constructor
     }
 
@@ -40,11 +38,11 @@ public class StartPage extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment StartPage.
+     * @return A new instance of fragment TicketTypePage.
      */
     // TODO: Rename and change types and number of parameters
-    public static StartPage newInstance(String param1, String param2) {
-        StartPage fragment = new StartPage();
+    public static TicketTypePage newInstance(String param1, String param2) {
+        TicketTypePage fragment = new TicketTypePage();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,29 +63,22 @@ public class StartPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_start_page, container, false);
-        Context context = view.getContext();
+        View view = inflater.inflate(R.layout.fragment_ticket_type_page, container, false);
+        int[] btnIds = {R.id.btn_types_1,R.id.btn_types_2,R.id.btn_types_3,R.id.btn_types_4,R.id.btn_types_5,R.id.btn_types_6};
+        Button[] btns = new Button[btnIds.length];
 
-        TextView tv_fixit =  view.findViewById(R.id.tv_fixit);
-        tv_fixit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                playStartup(context);
-                Navigation.findNavController(view).navigate(R.id.start_to_types);
+        for (int i = 0; i < btnIds.length; i++) {
+            if(i>=FragmentFunctions.TicketTypes.length){
+                btns[i] = view.findViewById(btnIds[i]);
+                btns[i].setEnabled(false);
+                btns[i].setVisibility(View.INVISIBLE);
+            }else{
+                btns[i] = FragmentFunctions.createTransitionButton(view,btnIds[i],R.id.types_to_fr1,FragmentFunctions.TicketTypes[i],i);
             }
-        });
+        }
 
+        Button btnToFrag2 = FragmentFunctions.createFrameSwitchButton(view,R.id.btnFr2,R.id.types_to_fr2,-1,0);
+        
         return view;
     }
-
-    public void playStartup(Context context){
-        try {
-            MediaPlayer player = MediaPlayer.create(context,R.raw.windows_startup_earrape);
-            player.start();
-            player.wait();
-            player.release();
-        }catch (Exception e){ }
-
-    }
-
 }

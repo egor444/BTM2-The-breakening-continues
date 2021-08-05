@@ -92,7 +92,7 @@ public class SupportPage extends Fragment {
         createSpeechButton(btn_speak_3,"Haben sie versucht den Automaten aus und wieder anzuschalten?");
         createSpeechButton(btn_speak_4,"Ich komm gleich durch den Bildschirm und schlag dich alter");
 
-        FragmentFunctions.overrideFrameSwitchButton(view,btn_backhome,R.id.support_to_fr1,-1,0);
+        FragmentFunctions.overrideFrameSwitchButton(view,btn_backhome,R.id.support_to_types,-1,0);
 
         return view;
     }

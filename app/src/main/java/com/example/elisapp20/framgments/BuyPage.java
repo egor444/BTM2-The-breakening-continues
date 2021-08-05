@@ -2,10 +2,7 @@ package com.example.elisapp20.framgments;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -129,7 +126,7 @@ public class BuyPage extends Fragment {
             });
         }
 
-        FragmentFunctions.createFrameSwitchButton(view,R.id.btn_bp_to_fr1,R.id.bp_to_fr1,-1,0);
+        FragmentFunctions.createFrameSwitchButton(view,R.id.btn_bp_to_fr1,R.id.bp_to_types,-1,0);
 
         return view;
     }

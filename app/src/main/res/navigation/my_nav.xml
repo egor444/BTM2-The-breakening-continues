@@ -11,8 +11,8 @@
         android:label="fragment_2"
         tools:layout="@layout/fragment_2" >
         <action
-            android:id="@+id/twotoone"
-            app:destination="@id/fragment1" />
+            android:id="@+id/fr2_to_types"
+            app:destination="@id/ticketTypePage" />
         <action
             android:id="@+id/fr2_to_support"
             app:destination="@id/supportPage" />
@@ -23,11 +23,15 @@
         android:label="fragment_1"
         tools:layout="@layout/fragment_1" >
         <action
-            android:id="@+id/onetotwo"
-            app:destination="@id/fragment2" />
-        <action
             android:id="@+id/to_buyPage"
             app:destination="@id/buyPage" />
+        <argument
+            android:name="typeId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/fr1_to_types"
+            app:destination="@id/ticketTypePage" />
     </fragment>
     <fragment
         android:id="@+id/buyPage"
@@ -39,8 +43,8 @@
             app:argType="integer"
             android:defaultValue="-1" />
         <action
-            android:id="@+id/bp_to_fr1"
-            app:destination="@id/fragment1" />
+            android:id="@+id/bp_to_types"
+            app:destination="@id/ticketTypePage" />
         <action
             android:id="@+id/confirm_buy"
             app:destination="@id/confirmation" />
@@ -51,8 +55,8 @@
         android:label="fragment_start_page"
         tools:layout="@layout/fragment_start_page" >
         <action
-            android:id="@+id/start_to_fragment1"
-            app:destination="@id/fragment1" />
+            android:id="@+id/start_to_types"
+            app:destination="@id/ticketTypePage" />
     </fragment>
     <fragment
         android:id="@+id/confirmation"
@@ -77,7 +81,19 @@
         android:label="fragment_support_page"
         tools:layout="@layout/fragment_support_page" >
         <action
-            android:id="@+id/support_to_fr1"
+            android:id="@+id/support_to_types"
+            app:destination="@id/ticketTypePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketTypePage"
+        android:name="com.example.elisapp20.framgments.TicketTypePage"
+        android:label="fragment_ticket_type_page"
+        tools:layout="@layout/fragment_ticket_type_page" >
+        <action
+            android:id="@+id/types_to_fr1"
             app:destination="@id/fragment1" />
+        <action
+            android:id="@+id/types_to_fr2"
+            app:destination="@id/fragment2" />
     </fragment>
 </navigation>

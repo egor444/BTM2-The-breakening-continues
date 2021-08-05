@@ -67,14 +67,50 @@ public class Fragment1 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_1, container, false);
+        int[] buttonids = {
+                R.id.btn_fr1_1,
+                R.id.btn_fr1_2,
+                R.id.btn_fr1_3,
+                R.id.btn_fr1_4,
+                R.id.btn_fr1_5,
+                R.id.btn_fr1_6,
+                R.id.btn_fr1_7,
+                R.id.btn_fr1_8,
+        };
+        Button[] btns = new Button[buttonids.length];
+        int typeId = getArguments().getInt("typeId");
+        int ticketIdFrom=0;
+        int ticketIdTo=0;
+        switch (typeId){
+            case 0:
+                ticketIdFrom = 0;
+                ticketIdTo = 5;
+                break;
+            case 1:
+                ticketIdFrom = 6;
+                ticketIdTo = 13;
+                break;
+            case 2:
+                ticketIdFrom = 14;
+                ticketIdTo = 16;
+                break;
+            case 3:
+                ticketIdFrom = 17;
+                ticketIdTo = 21;
+                break;
+        }
 
-        Button btnToFrag2 = FragmentFunctions.createFrameSwitchButton(view,R.id.btnFr2,R.id.onetotwo,-1,0);
-        Button btnToBuyPage_Streifenkarte = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_1,R.id.to_buyPage,0,0);
-        Button btnToBuyPage_Tageskarte = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_2,R.id.to_buyPage,1,0);
-        Button btnToBuyPage_Pepekarte = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_3,R.id.to_buyPage,2,0);
-        Button btnToBuyPage_Jahreskarte = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_4,R.id.to_buyPage,3,0);
-        Button btnToBuyPage_Monatskarte = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_5,R.id.to_buyPage,4,0);
-        Button btnToBuyPage_Kinderparadies = FragmentFunctions.createFrameSwitchButton(view,R.id.btn_fr1_6,R.id.to_buyPage,5,0);
+        for (int i = 0; i < buttonids.length; i++) {
+            if(i >= ticketIdTo - ticketIdFrom + 1){
+                btns[i] = view.findViewById(buttonids[i]);
+                btns[i].setEnabled(false);
+                btns[i].setVisibility(View.INVISIBLE);
+            }else{
+                FragmentFunctions.createFrameSwitchButton(view,buttonids[i],R.id.to_buyPage,i+ticketIdFrom,0);
+            }
+        }
+
+        FragmentFunctions.createTransitionButton(view,R.id.btn_fr1_to_types,R.id.fr1_to_types,"Zurück zum Anfang",0);
 
         return view;
     }
